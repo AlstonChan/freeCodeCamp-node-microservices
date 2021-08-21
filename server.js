@@ -36,23 +36,6 @@ app.get("/api/:date", (req, res) => {
     unix: newDate.getTime(),
     utc: newDate.toUTCString(),
   });
-
-  //test
-
-  // const { date } = req.params;
-  // let newDate;
-
-  // if (!isNaN(date)) {
-  //   newDate = new Date(parseInt(date));
-  // } else {
-  //   newDate = new Date(date);
-  // }
-
-  // if (newDate.toString() === "Invalid Date") {
-  //   res.json({ error: "Invalid Date" });
-  // } else {
-  //   res.json({ unix: newDate.getTime(), utc: newDate.toUTCString() });
-  // }
 });
 
 // your first API endpoint...
