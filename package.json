@@ -1,6 +1,6 @@
 {
   "name": "file_metadata",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API project for freeCodeCamp",
   "main": "server.js",
   "scripts": {
@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "multer": "^1.4.3"
+    "express": "^4.17.2",
+    "multer": "^1.4.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/freeCodeCamp/boilerplate-project-filemetadata"
+    "url": "https://filemetadata-freecodecamp.alstonchan.repl.co/"
   },
   "keywords": [
     "node",
@@ -22,6 +22,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.15"
   }
 }
