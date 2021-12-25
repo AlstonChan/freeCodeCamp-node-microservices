@@ -1,15 +1,15 @@
 body {
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	color: #222;
-	background-color: #FaFaFa;
-	text-align: center;
-	line-height: 1.4em;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #222;
+  background-color: #fafafa;
+  text-align: center;
+  line-height: 1.4em;
 }
 
 .container {
-	padding: 0;
-	margin-top: 40px;
+  padding: 0;
+  margin-top: 40px;
 }
 
 h3 {
@@ -17,16 +17,22 @@ h3 {
 }
 
 .footer {
-	margin-top: 40px;
+  margin-top: 40px;
+}
+
+.codeBlock {
+  margin: auto 0;
+  text-align: center;
+  background-color: rgb(219, 218, 218);
 }
 
 code {
   font-family: monospace;
   padding: 2px;
   color: black;
-  background-color: #fff;
+  max-width: 1000px;
 }
 
 a {
-	color: #2574A9;
+  color: #2574a9;
 }
