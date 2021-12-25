@@ -5,36 +5,30 @@ const app = express();
 const mongoose = require("mongoose");
 var dns = require("dns");
 const { nanoid } = require("nanoid");
+const myWebUrl = "https://UrlShortener-freeCodeCamp.alstonchan.repl.co"; //when using replit
 
-const mongo =
-  "mongodb+srv://Alston-url:JaONjYpc95dqCYjd@cluster0.14p2z.mongodb.net/shortenUrl?retryWrites=true&w=majority";
+const mongo = process.env.MONGOCRED;
 mongoose
   .connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => console.log("connected to mongodb"))
+  .then(() => console.log("connected to mongodb"))
   .catch((err) => console.log(err));
 
 const urlShortenSchema = new mongoose.Schema({
   original_url: String,
   short_url: String,
+  shorten_url: String,
 });
 
 const UrlShorten = mongoose.model("UrlShorten", urlShortenSchema);
 // Basic Configuration
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
-
 app.use(express.urlencoded({ extended: false }));
-
 app.use("/public", express.static(`${process.cwd()}/public`));
 
 app.get("/", function (req, res) {
   res.sendFile(process.cwd() + "/views/index.html");
-  if (req.query.v == 1629693279540) {
-    res.send("???");
-  } else if (req.query.v == 1629693276636) {
-    res.send("quack");
-  }
 });
 
 app.post("/api/shorturl", (req, res) => {
@@ -54,18 +48,22 @@ app.post("/api/shorturl", (req, res) => {
               res.json({
                 original_url: req.body.url,
                 short_url: shortPath.short_url,
+                shorten_url: shortPath.shorten_url,
               });
             } else {
               const shortPath = nanoid(20);
+              const shorten_url = `${req.hostname}/api/shorturl/${shortPath}`;
               const shortUrl = new UrlShorten({
                 original_url: req.body.url,
                 short_url: shortPath,
+                shorten_url,
               });
 
               shortUrl.save();
               res.json({
                 original_url: req.body.url,
                 short_url: shortPath,
+                shorten_url,
               });
             }
           });
