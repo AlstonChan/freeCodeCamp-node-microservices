@@ -7,11 +7,10 @@ require("dotenv").config();
 // const week = ['Mon', 'Tue', 'Wed', "Thu", "Fri", "Sat", "Sun"]
 // const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-const mongo =
-  "mongodb+srv://Alston-url:JaONjYpc95dqCYjd@cluster0.14p2z.mongodb.net/exerciseTracker?retryWrites=true&w=majority";
+const mongo = process.env.MONGOCRED;
 mongoose
   .connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => console.log("connected to mongodb"))
+  .then(() => console.log("connected to mongodb"))
   .catch((err) => console.log(err));
 
 const userSchema = new mongoose.Schema({
@@ -71,12 +70,9 @@ app
           } else {
             const newUser = new User({ username: req.body.username });
             newUser.save();
-            const thisUser = await User.findOne({
-              username: req.body.username,
-            });
             res.json({
-              username: thisUser.username,
-              _id: thisUser._id,
+              username: newUser.username,
+              _id: newUser._id,
             });
           }
         });
